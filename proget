@@ -1,0 +1,4 @@
+docker run -d --name=proget --restart=unless-stopped \
+  -v proget-packages:/var/proget/packages -p 80:80 --net=inedo \
+  -e PROGET_SQL_CONNECTION_STRING='Data Source=inedo-sql; Initial Catalog=ProGet; User ID=sa; Password=«YourStrong!Passw0rd»' \
+  proget.inedo.com/productimages/inedo/proget:latest
