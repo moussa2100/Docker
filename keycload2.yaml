@@ -5,11 +5,15 @@ services:
     image: jboss/keycloak:latest
     container_name: keycloak
     ports:
-      - "8080:8080"
+      - "8443:8443"
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_HTTPS_PORT: 8443
+      KEYCLOAK_HTTPS_PROXY: true
+      KEYCLOAK_FRONTEND_URL: "https://keycloak.appone.tech/auth"
     volumes:
+      - /root/docker/nginx/letsencrypt/live/npm-9:/etc/x509/https:ro
       - keycloak-data:/opt/jboss/keycloak/standalone/data
     restart: always
 
