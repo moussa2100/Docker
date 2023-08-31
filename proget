@@ -5,9 +5,9 @@ services:
     container_name: proget
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "8082:80"
     environment:
-      - PROGET_SQL_CONNECTION_STRING=Data Source=inedo-sql; Initial Catalog=ProGet; User ID=sa; Password=«YourStrong!Passw0rd»
+      - PROGET_SQL_CONNECTION_STRING=Data Source=10.10.10.30; Initial Catalog=proget; User ID=sa; Password=Aa@12121988
     volumes:
       - proget-packages:/var/proget/packages
     networks:
