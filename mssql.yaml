@@ -9,4 +9,11 @@ services:
       - "1433:1433"
     container_name: mssql
     hostname: mssql
+    volumes:
+      - mssql_data:/var/opt/mssql
+      - mssql_logs:/var/opt/sqlserver
     restart: unless-stopped
+
+volumes:
+  mssql_data:
+  mssql_logs:
