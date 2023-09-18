@@ -17,14 +17,14 @@ services:
       - "465:465"
       - "587:587"
     volumes:
-      - /iredmail/data/backup-mysql:/var/vmail/backup/mysql
-      - /iredmail/data/mailboxes:/var/vmail/vmail1
-      - /iredmail/data/mlmmj:/var/vmail/mlmmj
-      - /iredmail/data/mlmmj-archive:/var/vmail/mlmmj-archive
-      - /iredmail/data/imapsieve_copy:/var/vmail/imapsieve_copy
-      - /iredmail/data/custom:/opt/iredmail/custom
-      - /iredmail/data/ssl:/opt/iredmail/ssl
-      - /iredmail/data/mysql:/var/lib/mysql
-      - /iredmail/data/clamav:/var/lib/clamav
-      - /iredmail/data/sa_rules:/var/lib/spamassassin
-      - /iredmail/data/postfix_queue:/var/spool/postfix
+      - ./iredmail/data/backup-mysql:/var/vmail/backup/mysql
+      - ./iredmail/data/mailboxes:/var/vmail/vmail1
+      - ./iredmail/data/mlmmj:/var/vmail/mlmmj
+      - ./iredmail/data/mlmmj-archive:/var/vmail/mlmmj-archive
+      - ./iredmail/data/imapsieve_copy:/var/vmail/imapsieve_copy
+      - ./iredmail/data/custom:/opt/iredmail/custom
+      - ./iredmail/data/ssl:/opt/iredmail/ssl
+      - ./iredmail/data/mysql:/var/lib/mysql
+      - ./iredmail/data/clamav:/var/lib/clamav
+      - ./iredmail/data/sa_rules:/var/lib/spamassassin
+      - ./iredmail/data/postfix_queue:/var/spool/postfix
