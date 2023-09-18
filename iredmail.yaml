@@ -1,3 +1,19 @@
+mkdir /iredmail         # Create a new directory or use any directory
+                        # you prefer. `/iredmail/` is just an example
+cd /iredmail
+touch iredmail-docker.conf
+
+echo HOSTNAME=mail.mydomain.com >> iredmail-docker.conf
+echo FIRST_MAIL_DOMAIN=mydomain.com >> iredmail-docker.conf
+echo FIRST_MAIL_DOMAIN_ADMIN_PASSWORD=my-secret-password >> iredmail-docker.conf
+echo MLMMJADMIN_API_TOKEN=$(openssl rand -base64 32) >> iredmail-docker.conf
+echo ROUNDCUBE_DES_KEY=$(openssl rand -base64 24) >> iredmail-docker.conf
+
+cd /iredmail
+mkdir -p data/{backup-mysql,clamav,custom,imapsieve_copy,mailboxes,mlmmj,mlmmj-archive,mysql,sa_rules,ssl,postfix_queue}
+
+
+
 version: '3'
 services:
   iredmail:
@@ -17,14 +33,14 @@ services:
       - "465:465"
       - "587:587"
     volumes:
-      - ./iredmail/data/backup-mysql:/var/vmail/backup/mysql
-      - ./iredmail/data/mailboxes:/var/vmail/vmail1
-      - ./iredmail/data/mlmmj:/var/vmail/mlmmj
-      - ./iredmail/data/mlmmj-archive:/var/vmail/mlmmj-archive
-      - ./iredmail/data/imapsieve_copy:/var/vmail/imapsieve_copy
-      - ./iredmail/data/custom:/opt/iredmail/custom
-      - ./iredmail/data/ssl:/opt/iredmail/ssl
-      - ./iredmail/data/mysql:/var/lib/mysql
-      - ./iredmail/data/clamav:/var/lib/clamav
-      - ./iredmail/data/sa_rules:/var/lib/spamassassin
-      - ./iredmail/data/postfix_queue:/var/spool/postfix
+      - /iredmail/data/backup-mysql:/var/vmail/backup/mysql
+      - /iredmail/data/mailboxes:/var/vmail/vmail1
+      - /iredmail/data/mlmmj:/var/vmail/mlmmj
+      - /iredmail/data/mlmmj-archive:/var/vmail/mlmmj-archive
+      - /iredmail/data/imapsieve_copy:/var/vmail/imapsieve_copy
+      - /iredmail/data/custom:/opt/iredmail/custom
+      - /iredmail/data/ssl:/opt/iredmail/ssl
+      - /iredmail/data/mysql:/var/lib/mysql
+      - /iredmail/data/clamav:/var/lib/clamav
+      - /iredmail/data/sa_rules:/var/lib/spamassassin
+      - /iredmail/data/postfix_queue:/var/spool/postfix
