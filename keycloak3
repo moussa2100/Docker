@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:legacy
+    container_name: keycloak
+    ports:
+      - "7443:8443"
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_HTTPS_PORT: 8443
+      KEYCLOAK_HTTPS_PROXY: true
+      KEYCLOAK_FRONTEND_URL: "https://keycloak.appone.tech/auth"
+      DB_VENDOR: POSTGRES
+      DB_ADDR: 142.132.251.125  # عنوان خادم قاعدة البيانات الخارجية
+      DB_DATABASE: keycloak       # اسم قاعدة البيانات
+      DB_USER: root             # اسم المستخدم لقاعدة البيانات
+      DB_PASSWORD: 123       # كلمة مرور قاعدة البيانات
+      DB_SCHEMA: public         # اسم المخطط (schema)
+
+    volumes:
+      - /root/docker/nginx/letsencrypt/live/npm-2:/etc/x509/https:ro
+      - keycloak-data:/opt/jboss/keycloak/standalone/data
+    restart: always
+
+volumes:
+  keycloak-data:
