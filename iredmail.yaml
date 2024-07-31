@@ -1,9 +1,13 @@
+#In your domain host
+add mx
+txt -> v=spf1 mx ~all
+
 mkdir /iredmail         # Create a new directory or use any directory
                         # you prefer. `/iredmail/` is just an example
 cd /iredmail
 touch iredmail-docker.conf
 
-echo HOSTNAME=mail.mydomain.com >> iredmail-docker.conf
+  echo HOSTNAME=mail.mydomain.com >> iredmail-docker.conf
 echo FIRST_MAIL_DOMAIN=mydomain.com >> iredmail-docker.conf
 echo FIRST_MAIL_DOMAIN_ADMIN_PASSWORD=my-secret-password >> iredmail-docker.conf
 echo MLMMJADMIN_API_TOKEN=$(openssl rand -base64 32) >> iredmail-docker.conf
