@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  jenkins:
+    image: moussa2100/jenkins-docker
+    user: root
+    ports:
+      - "2376:8080"
+    environment:
+     - JAVA_OPTS=-Dmail.smtp.ssl.checkserveridentity=false -Dmail.smtp.ssl.trust=*
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock  # Mount Docker socket
+  ssh-agent:
+    image: jenkins/ssh-agent
+
+
